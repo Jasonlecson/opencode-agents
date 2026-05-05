@@ -1,36 +1,93 @@
 # Opencode-agents
 
-#### Description
-常用的适用opencode的agent配置。
+A ready-to-use collection of OpenCode agent configurations covering 18 specialized roles: architecture, code review, debugging, testing, frontend development, and more.
 
-#### Software Architecture
-Software architecture description
+## Directory Structure
 
-#### Installation
+```
+agents/
+├── Zero.md              # Primary agent (Kimi K2.6)
+├── Erribaba.md          # Primary agent (mimo-v2.5-pro)
+├── architect.md         # Architecture design
+├── debugger.md          # Debugging & diagnostics
+├── doc-writer.md        # Documentation writing
+├── e2e-tester.md        # End-to-end testing
+├── executor.md          # Command execution
+├── frontend-dev.md      # Frontend development
+├── frontend-reviewer.md # Frontend code review
+├── git-assistant.md     # Git workflow
+├── perf-optimizer.md    # Performance optimization
+├── refactorer.md        # Code refactoring
+├── research.md          # Technical research
+├── reviewer.md          # Code review
+├── security-auditor.md  # Security audit
+├── test-writer.md       # Test writing
+├── ui-designer.md       # UI design & styling
+└── validator.md         # Final validation
+```
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+## Agent Overview
 
-#### Instructions
+### Primary Agents
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+| File | Model | Description |
+|------|-------|-------------|
+| `Zero.md` | Kimi K2.6 | Lead programming agent — requirement analysis, task breakdown, subagent orchestration |
+| `Erribaba.md` | mimo-v2.5-pro | Same role, different model |
 
-#### Contribution
+### Subagents
 
-1.  Fork the repository
-2.  Create Feat_xxx branch
-3.  Commit your code
-4.  Create Pull Request
+| File | Responsibility | Read-only |
+|------|---------------|:---------:|
+| `architect.md` | System design, module planning, tech selection | ✓ |
+| `debugger.md` | Systematic bug isolation and fixing | ✓ |
+| `doc-writer.md` | Technical docs, API references | ✓ |
+| `e2e-tester.md` | Playwright/Cypress end-to-end tests | ✓ |
+| `executor.md` | Run commands, execute tests, build projects | ✗ |
+| `frontend-dev.md` | React/Vue/Svelte component development | ✗ |
+| `frontend-reviewer.md` | Frontend review, accessibility compliance | ✓ |
+| `git-assistant.md` | Commit messages, branch naming, PR descriptions | ✓ |
+| `perf-optimizer.md` | Performance profiling and optimization | ✓ |
+| `refactorer.md` | Code refactoring, duplication removal | ✓ |
+| `research.md` | Documentation lookup, tech research | ✓ |
+| `reviewer.md` | Code review (logic, security, performance) | ✓ |
+| `security-auditor.md` | OWASP Top 10 security audit | ✓ |
+| `test-writer.md` | Unit, integration, and edge-case tests | ✓ |
+| `ui-designer.md` | CSS/Tailwind, responsive layouts, animations | ✓ |
+| `validator.md` | Final validation (build, tests, type check) | ✓ |
 
+## Usage
 
-#### Gitee Feature
+1. Copy the files from `agents/` to your OpenCode configuration directory
+2. Choose a primary agent (`Zero.md` or `Erribaba.md`) as your default
+3. The primary agent automatically delegates tasks to the appropriate subagent
 
-1.  You can use Readme\_XXX.md to support different languages, such as Readme\_en.md, Readme\_zh.md
-2.  Gitee blog [blog.gitee.com](https://blog.gitee.com)
-3.  Explore open source project [https://gitee.com/explore](https://gitee.com/explore)
-4.  The most valuable open source project [GVP](https://gitee.com/gvp)
-5.  The manual of Gitee [https://gitee.com/help](https://gitee.com/help)
-6.  The most popular members  [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+## File Format
+
+Each agent file consists of YAML frontmatter + Markdown body:
+
+```yaml
+---
+description: Chinese description (used by OpenCode for trigger matching)
+mode: primary | subagent
+model: provider/model-name
+temperature: 0.0-1.0
+tools:              # optional — restrict tool access
+  write: false
+  edit: false
+  bash: false
+---
+
+<System prompt>
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a `Feat_xxx` branch
+3. Commit your code
+4. Create a Pull Request
+
+## License
+
+[MIT](LICENSE)
