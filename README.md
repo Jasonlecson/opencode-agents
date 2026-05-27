@@ -1,6 +1,6 @@
 # Opencode-agents
 
-一套开箱即用的 OpenCode 智能体配置集合，涵盖架构设计、代码审查、调试、测试、前端开发、数据库工程、DevOps 等 24 个专业子智能体，以及 2 个主智能体。
+一套开箱即用的 OpenCode 智能体配置集合，涵盖架构设计、代码审查、调试、测试、前端开发、数据库工程、DevOps 等 25 个专业子智能体，以及 2 个主智能体。
 
 ## 项目结构
 
@@ -33,8 +33,10 @@ opencode-agents/
 │   ├── test-writer.md      # 单元/集成/边界测试
 │   ├── ui-designer.md      # CSS/Tailwind/响应式/动画
 │   ├── validator.md        # 最终验证（构建/测试/类型检查）
-│   └── vision-dev.md       # 设计稿分析、截图转代码
+│   ├── explore.md          # 代码库探索、结构分析
+│   ├── vision-dev.md       # 设计稿分析、截图转代码
 ├── AGENTS.md               # 贡献指南与 Agent 编写规范
+├── CHANGELOG.md            # 版本变更记录
 ├── README.md               # 中文说明
 ├── README.en.md            # English
 └── LICENSE                 # MIT
@@ -77,7 +79,7 @@ opencode-agents/
 | 文件 | 模型 | 职责 | 写权限 |
 |------|------|------|:------:|
 | `debugger.md` | deepseek-v4-pro | 系统化调试、根因分析、最小修复 | ✓ |
-| `perf-optimizer.md` | mimo-v2.5-pro | 性能分析、瓶颈定位、优化方案 | ✗ |
+| `perf-optimizer.md` | deepseek-v4-pro | 性能分析、瓶颈定位、优化方案 | ✗ |
 | `refactorer.md` | mimo-v2.5-pro | 代码重构、提取函数、消除重复 | ✓ |
 
 #### 架构与设计
@@ -119,6 +121,12 @@ opencode-agents/
 | 文件 | 模型 | 职责 | 写权限 |
 |------|------|------|:------:|
 | `executor.md` | minimax-m2.7 | 命令执行、测试运行、项目构建 | ✓ |
+
+#### 探索
+
+| 文件 | 模型 | 职责 | 写权限 |
+|------|------|------|:------:|
+| `explore.md` | qwen3.6-plus | 代码库搜索、项目结构分析 | ✗ |
 
 ## 使用方式
 

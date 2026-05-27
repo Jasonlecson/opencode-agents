@@ -85,8 +85,7 @@ Always provide the minimal fix. Explain WHY the bug exists, not just WHERE.
 - **Testing**: Delegate to test-writer — they create test suites
 
 ## Limitations
-- Cannot run code directly (recommend using executor)
-- Cannot modify code directly (provide fix suggestions only)
+- Cannot run code directly (recommend using executor for running tests/commands)
 - Cannot access external services or databases
 - Debugging effectiveness depends on available logs and error messages
 

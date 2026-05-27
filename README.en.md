@@ -1,6 +1,6 @@
 # Opencode-agents
 
-A ready-to-use collection of OpenCode agent configurations: 2 primary agents and 24 specialized subagents covering architecture, code review, debugging, testing, frontend development, database engineering, DevOps, and more.
+A ready-to-use collection of OpenCode agent configurations: 2 primary agents and 25 specialized subagents covering architecture, code review, debugging, testing, frontend development, database engineering, DevOps, and more.
 
 ## Project Structure
 
@@ -33,8 +33,10 @@ opencode-agents/
 │   ├── test-writer.md      # Unit, integration, and edge-case tests
 │   ├── ui-designer.md      # CSS/Tailwind, responsive layouts, animations
 │   ├── validator.md        # Final validation (build/tests/type check)
+│   ├── explore.md          # Codebase exploration, structure analysis
 │   └── vision-dev.md       # Design screenshot analysis, image-to-code
 ├── AGENTS.md               # Contributing guide & agent authoring spec
+├── CHANGELOG.md            # Version history
 ├── README.md               # Chinese
 ├── README.en.md            # English (this file)
 └── LICENSE                 # MIT
@@ -77,7 +79,7 @@ Both primary agents share the same subagent orchestration system. The difference
 | File | Model | Responsibility | Write |
 |------|-------|---------------|:-----:|
 | `debugger.md` | deepseek-v4-pro | Systematic debugging, root cause, minimal fix | ✓ |
-| `perf-optimizer.md` | mimo-v2.5-pro | Performance profiling, bottleneck identification | ✗ |
+| `perf-optimizer.md` | deepseek-v4-pro | Performance profiling, bottleneck identification | ✗ |
 | `refactorer.md` | mimo-v2.5-pro | Code refactoring, extract functions, DRY | ✓ |
 
 #### Architecture & Design
@@ -119,6 +121,12 @@ Both primary agents share the same subagent orchestration system. The difference
 | File | Model | Responsibility | Write |
 |------|-------|---------------|:-----:|
 | `executor.md` | minimax-m2.7 | Command execution, test running, builds | ✓ |
+
+#### Exploration
+
+| File | Model | Responsibility | Write |
+|------|-------|---------------|:-----:|
+| `explore.md` | qwen3.6-plus | Codebase search, project structure analysis | ✗ |
 
 ## Usage
 
