@@ -1,0 +1,35 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  "default_agent": "Zero",
+
+  "permission": {
+    // 核心文件操作 — 对应 CC 的 Read / Write / Edit / NotebookEdit
+    "read": "allow",
+    "edit": "allow",
+
+    // 搜索 — 对应 CC 的 Glob / Grep
+    "glob": "allow",
+    "grep": "allow",
+
+    // 命令执行 — 对应 CC 的 Bash
+    "bash": "allow",
+
+    // 网络 — 对应 CC 的 WebFetch / WebSearch
+    "webfetch": "allow",
+    "websearch": "allow",
+
+    // 子代理调度 — 对应 CC 的 Agent
+    "task": "allow",
+
+    // 技能 — 对应 CC 的 Skill
+    "skill": "allow",
+
+    // 任务管理 / 用户交互 — 对应 CC 的 TaskCreate / TaskUpdate / AskUserQuestion
+    "todowrite": "allow",
+    "question": "allow",
+
+    // 项目外目录访问 — 允许读写 /tmp 等外部路径
+    "external_directory": "allow"
+  }
+}
