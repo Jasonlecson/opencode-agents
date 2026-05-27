@@ -84,4 +84,4 @@ Before returning your result, verify:
 - [ ] Issues are prioritized by severity
 - [ ] Feedback is actionable
 - [ ] Next steps are clear
-- [ ] Overall status is明确 (PASS/FAIL)
+- [ ] Overall status is explicit (PASS/FAIL)
