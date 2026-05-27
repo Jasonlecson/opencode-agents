@@ -2,16 +2,21 @@
 
 ## What This Repo Is
 
-A collection of OpenCode agent configuration files. No code, no build, no tests — only `.md` files that define agent behavior via YAML frontmatter + prompt body.
+A collection of OpenCode agent configuration files. No code, no build, no tests — only `.md` files that define agent behavior via YAML frontmatter + prompt body, plus an `opencode.jsonc` for global settings.
 
 ## Structure
 
 ```
-agents/
-  *.md          # Agent definitions (18 files)
-README.md       # Chinese (Gitee boilerplate, mostly placeholder)
-README.en.md    # English (same)
-LICENSE         # MIT
+opencode-agents/
+├── opencode.jsonc          # Global config (permissions, default agent)
+├── agents/
+│   ├── Zero.md             # Primary agent (mimo-v2.5, multimodal)
+│   ├── Erribaba.md         # Primary agent (mimo-v2.5-pro)
+│   └── *.md                # 24 subagent definitions
+├── AGENTS.md               # This file
+├── README.md               # Chinese
+├── README.en.md            # English
+└── LICENSE                 # MIT
 ```
 
 ## Agent File Format
@@ -36,11 +41,49 @@ tools:            # optional — omit keys to allow all
 ## Key Conventions
 
 - **`description` is always in Chinese** — this is the trigger text OpenCode matches against. Keep it consistent with existing files.
-- **`mode: primary`** means the agent can be a top-level session. Only `Zero.md` (Kimi K2.6) and `Erribaba.md` (mimo-v2.5-pro) are primary agents.
+- **`mode: primary`** means the agent can be a top-level session. Only `Zero.md` (mimo-v2.5) and `Erribaba.md` (mimo-v2.5-pro) are primary agents.
 - **`mode: subagent`** means the agent is only invoked via delegation from a primary agent.
-- **Tool restrictions** in frontmatter (`write: false`, `edit: false`, `bash: false`) make an agent read-only. Most subagents are read-only; `executor` and `frontend-dev` are not.
-- **Model naming**: provider prefix matters — `opencode-go/mimo-v2.5`, `opencode-go/kimi-k2.6`, `xiaomi-token-plan-cn/mimo-v2.5-pro`.
+- **Tool restrictions** in frontmatter (`write: false`, `edit: false`, `bash: false`) make an agent read-only. Most review/audit subagents are read-only; implementation agents have write access.
+- **Model naming**: provider prefix matters — use `opencode-go/mimo-v2.5`, `opencode-go/deepseek-v4-pro`, etc.
 - **Filename = agent name** used in delegation (e.g., `reviewer.md` → delegate as `reviewer`).
+- **Primary agents must list all subagents** in their body — when adding a new subagent, update both `Zero.md` and `Erribaba.md`.
+
+## Model Assignments
+
+| Model | Used By | Reasoning |
+|-------|---------|-----------|
+| `opencode-go/mimo-v2.5` | Zero, frontend-reviewer, git-assistant, software-engineer, vision-dev | Multimodal, fast, general-purpose |
+| `opencode-go/mimo-v2.5-pro` | Erribaba, api-designer, code-generator, devops, e2e-tester, perf-optimizer, refactorer, test-writer | Best coding capability |
+| `opencode-go/deepseek-v4-pro` | db-engineer, debugger, migration, reviewer, security-auditor | Strong at analysis and reasoning |
+| `opencode-go/kimi-k2.6` | frontend-dev, ui-designer | Good at frontend/creative tasks |
+| `opencode-go/qwen3.6-plus` | doc-writer, project-manager, research | Good at writing and planning |
+| `opencode-go/glm-5.1` | architect | Architecture-level reasoning |
+| `opencode-go/minimax-m2.7` | executor, validator | Execution and validation focus |
+
+## opencode.jsonc
+
+The global config file controls:
+
+```jsonc
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "Zero",  // or "Erribaba"
+  "permission": {
+    "read": "allow",
+    "edit": "allow",
+    "glob": "allow",
+    "grep": "allow",
+    "bash": "allow",
+    "webfetch": "allow",
+    "websearch": "allow",
+    "task": "allow",       // subagent delegation
+    "skill": "allow",
+    "todowrite": "allow",
+    "question": "allow",
+    "external_directory": "allow"
+  }
+}
+```
 
 ## When Adding or Editing Agents
 
